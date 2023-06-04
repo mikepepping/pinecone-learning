@@ -39,12 +39,9 @@ def scrape(link_url: str):
     pokemon_data_links = scrape_pokemon_links(link_url)
     for link in pokemon_data_links:
         data = scrape_pokemon_data(link)
-        with open(f"""pages/{data.title.text.split()[0]}.html""", 'w+') as file:
+        with open(f"""pages/{data.title.text.split()[0]}.txt""", 'w+') as file:
             print("Saving html document")
-            file.write(data.prettify())
-        wait_time = randint(2, 10)
-        print("Politely waiting.. " + str(wait_time) + "seconds")
-        sleep(wait_time)
+            file.write(data.get_text())
 
 
 if __name__ == '__main__':
